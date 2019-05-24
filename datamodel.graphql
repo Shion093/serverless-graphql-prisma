@@ -1,0 +1,23 @@
+enum Role {
+  GUEST
+  OWNER
+  ADMIN
+  USER
+  GODMODE
+}
+
+type User {
+  id: ID! @id
+  firstName: String
+  lastName: String
+  email: String! @unique
+  phoneNumber: String
+  countryCode: Int
+  role: Role
+  profilePic: String
+  gender: String
+  address: String
+  position: String
+  trial: Boolean
+  cognitoId: String! @unique
+}

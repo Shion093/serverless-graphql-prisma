@@ -1,0 +1,33 @@
+version: 0.2
+
+env:
+  parameter-store:
+    PRISMA_ENDPOINT: "/dev/platform/prisma_endpoint"
+    PRISMA_SECRET: "/dev/platform/prisma_secret"
+    USER_POOL_ID: "/dev/web/user_pool_id"
+    AWS_ACCESS_KEY_ID: "access_key_id"
+    AWS_SECRET_ACCESS_KEY: "secret_access_key"
+    USER_POOL_CLIENT_ID: "user_pool_client_id"
+    COGNITO_KEYS_URL: "cognito_url_keys"
+
+phases:
+  install:
+    commands:
+      - npm install -g serverless
+      - npm install
+    finally:
+      - echo Build done
+
+  build:
+    commands:
+      - touch .env
+      - echo "PRISMA_ENDPOINT=$PRISMA_ENDPOINT" >> .env
+      - echo "PRISMA_SECRET=$PRISMA_SECRET" >> .env
+      - echo "PRISMA_MANAGEMENT_API_SECRET=$PRISMA_SECRET" >> .env
+      - echo "USER_POOL_CLIENT_ID=$USER_POOL_CLIENT_ID" >> .env
+      - echo "COGNITO_KEYS_URL=$COGNITO_KEYS_URL" >> .env
+      - echo "USER_POOL_ID=$USER_POOL_ID" >> .env
+      - serverless config credentials --overwrite --provider aws --key $AWS_ACCESS_KEY_ID --secret $AWS_SECRET_ACCESS_KEY --profile shion
+      - serverless deploy
+    finally:
+      - echo Build done

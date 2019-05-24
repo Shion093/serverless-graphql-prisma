@@ -1,0 +1,35 @@
+{
+  "name": "serverless-graphql-prisma",
+  "version": "1.0.0",
+  "description": "",
+  "main": "handler.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "deploy": "prisma deploy --env-file .env.local",
+    "deploy:develop": "prisma deploy --env-file .env.development",
+    "dev": "sls offline start --port 8080 --dontPrintOutput --env local",
+    "dev:develop": "sls offline start --port 8080 --dontPrintOutput --env development",
+    "docker": "docker-compose up -d"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "apollo-errors": "^1.9.0",
+    "aws-sdk": "^2.453.0",
+    "crypto-secure-random-digit": "^1.0.7",
+    "graphql-import": "^0.7.1",
+    "graphql-middleware": "^2.0.2",
+    "graphql-tools": "^4.0.3",
+    "graphql-yoga": "^1.17.4",
+    "lodash": "^4.17.11",
+    "node-jose": "^1.1.0",
+    "prisma-binding": "^2.3.8",
+    "prisma-client-lib": "^1.28.5"
+  },
+  "devDependencies": {
+    "serverless-dotenv-plugin": "^2.0.1",
+    "serverless-offline": "^3.31.3",
+    "serverless-webpack": "^5.2.0",
+    "webpack": "^4.26.1"
+  }
+}
